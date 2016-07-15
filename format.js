@@ -50,6 +50,9 @@ Format.prototype.mergeChunksIntoAssets = function () {
         for (var asset in assetsByChunkName[chunk]) {
             asset = assetsByChunkName[chunk][asset];
             var fileExtension = asset.split('.').slice(-1)[0];
+            if (fileExtension.indexOf('?') != -1) {
+              fileExtension = fileExtension.substr(0, fileExtension.indexOf('?'))
+            }
             var chunkWithExtension = chunk + '.' + fileExtension;
 
             output.assets[chunkWithExtension] = asset;
